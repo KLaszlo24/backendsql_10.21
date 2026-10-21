@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Query } from '@nestjs/common';
 import { AppService } from './app.service.js';
 
 @Controller()
@@ -27,5 +27,12 @@ export class AppController {
     return{
       jatekok: await this.appService.getJatekok(),
     }
+  }
+  @Get("macskakeres")
+  @Render("macskakeres")
+  async getMacskakBySearch(@Query('search') search: string) {
+    return {
+      macskak: await this.appService.getMacskakBySearch(search),
+    };
   }
 }
